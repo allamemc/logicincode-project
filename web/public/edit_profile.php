@@ -16,7 +16,7 @@
         <a href="../index.php" class="navbar-logo">LogicInCode</a>
       </div>
       <div class="navbar-links">
-        <a href="../views/post.php">Posts</a>
+        <a href="./profile.php">Volver</a>
       </div>
     </nav>
     

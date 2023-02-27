@@ -16,13 +16,13 @@
         <a href="../index.php" class="navbar-logo">LogicInCode</a>
       </div>
       <div class="navbar-links">
-        <a href="../views/post.php">Posts</a>
+        <a href="./profile.php">Volver</a>
       </div>
     </nav>
     <form class="formulario a" action="" method="post" enctype="multipart/form-data">
           <h1>Ediar Post</h1><br>
           <input type="text" name="tema" value="<?php echo $_GET['tema'] ?>" maxlength="50" required><br>
-          <textarea name="descricion" placeholder="<?php echo $_GET['desc'] ?>" id="" cols="30" rows="10" maxlength="700" minlength="50" required></textarea><br>
+          <textarea name="descricion" id="" cols="30" rows="10" maxlength="700" minlength="50" required><?php echo $_GET['desc'] ?></textarea><br>
           <input type="file" name="imagen" required><br>
           <input type="submit" name="enviar" value="Actualizar Post">
     </form>

@@ -83,10 +83,14 @@
             </div>
             <div class='descripcionn'>
             ".$row['descripcion']."
-            </div>
+            </div>                      
             <a href='./edit_profile.php?usuario=".$row['usuario']."&desc=".$row['descripcion']."' style='text-decoration:none; text-align:center;'>
                 <ion-icon name='create' class='ieditar' alt='Editar'></ion-icon>
-            </a>";  
+            </a>
+            <div class='botones' style='margin-top:0px; justify-content:center; margin-bottom:20px;'>
+                        <a href='../users/logout.php' class='editame e'>Cerrar Sesión</a>
+                        </div>";
+              
         }
         ?>
         </div>
