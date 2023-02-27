@@ -41,10 +41,9 @@
                     </div>";
                 
             }else{
-              
-                    $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
-                $allowed_extensions = array('jpg', 'jpeg', 'png');
                 if (isset($_FILES['imagen'])) {
+                    $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
+                    $allowed_extensions = array('jpg', 'jpeg', 'png');
                     $extension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
                     if (!in_array($extension, $allowed_extensions)) {
                         echo "<div class='alert alert-warning' role='alert' style='width:400px; margin:0 auto; margin-top:20px;'>

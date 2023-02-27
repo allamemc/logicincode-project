@@ -23,6 +23,26 @@
     <div class="panel">
         <?php
         require_once('../config/db.php');
+        if(isset($_GET['id'])){
+          $ids = $_GET['id'];
+          echo "<div class='popup'>
+          <form method='post' action='' style='position:fixed;'>
+            <p>¿Desea eliminar este post?</p>
+            <div class='text-right'>
+              <button type='submit' class='btn btn-primary' name='alerta1'>Eliminar</button>
+              <button type='submit' class='btn btn-secondary' name='alerta2'>Cancelar</button>
+            </div>
+          </form>
+          </div>";
+          if(isset($_POST['alerta1'])){
+            $sql = "call eliminar_post(".$ids.")";
+            $registros = $pdo->exec($sql);
+            header("Location: ../private/panel.php");
+          }
+          if(isset($_POST['alerta2'])){
+            header("Location: ../private/panel.php");
+          }
+        }
         session_start();
         if(isset($_SESSION['token'] )){
           if($_SESSION['token'] == 'admin'){
@@ -50,7 +70,7 @@
                     <td>".$row["tema"]."</td>
                     <td>".$row["fecha"]."</td>
                     <td>
-                    <a class='btn btn-danger' href='panel.php?id=".$row['id_post']."' onclick =' return DeleteConfirm()'><ion-icon name='trash-outline' style='font-size:17px;'</ion-icon></a>
+                    <a class='btn btn-danger' href='panel.php?id=".$row['id_post']."'><ion-icon name='trash-outline' style='font-size:17px;'</ion-icon></a>
                     </td>
                 </tr>");
         
@@ -59,26 +79,7 @@
         echo("
             </tbody>
             </table>"); 
-            if(isset($_GET['id'])){
-              $ids = $_GET['id'];
-              echo "<div class='popup'>
-              <form method='post' action='' style='position:fixed;'>
-                <p>¿Desea eliminar este post?</p>
-                <div class='text-right'>
-                  <button type='submit' class='btn btn-primary' name='alerta1'>Ok</button>
-                  <button type='submit' class='btn btn-secondary' name='alerta2'>Cancel</button>
-                </div>
-              </form>
-              </div>";
-              if(isset($_POST['alerta1'])){
-                $sql = "call eliminar_post(".$ids.")";
-                $registros = $pdo->exec($sql);
-                header("Location: ../private/panel.php");
-              }
-              if(isset($_POST['alerta2'])){
-                header("Location: ../private/panel.php");
-              }
-            }
+            
           }
         }
         
