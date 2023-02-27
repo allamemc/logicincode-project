@@ -66,7 +66,7 @@
             $resultado = $pdo->query($consulta);
             echo "<div class='post'>";
             if($resultado->rowCount() == 0){
-              if($_SESSION['token'] = 'admin'){
+              if($_SESSION['token'] == 'admin'){
                 echo "<div class='mensaje a'>Los usuarios no han publicado nada</div>";
               }else{
                 echo "<div class='mensaje a'>Aún no hay Posts, <a href='../public/add_post.php'>empieza tú.</a></div>";
