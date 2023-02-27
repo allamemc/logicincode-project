@@ -23,63 +23,71 @@
     <div class="panel">
         <?php
         require_once('../config/db.php');
-        $consulta = "SELECT * FROM posts";
-        $resultado = $pdo->query($consulta);
-        echo "<div class='mensaje a'>Panel de Control</div>";
-            echo("<table class='table table' style='color:black; width:100%; margin:0 auto; '>
-            <thead>
-            <tr>
-                <th scope='col'>ID USUARIO</th>
-                <th scope='col'>ID POST</th>
-                <th scope='col'>USUARIO</th>
-                <th scope='col'>TEMA</th>
-                <th scope='col'>FECHA</th>
-                <th scope='col'>ELIMINAR</th>
-            </tr>
-            </thead>
-            <tbody>");
-        while($row = $resultado->fetch()){
+        session_start();
+        if(isset($_SESSION['token'] )){
+          if($_SESSION['token'] == 'admin'){
+            $consulta = "SELECT * FROM posts";
+            $resultado = $pdo->query($consulta);
+            echo "<div class='mensaje a'>Panel de Control</div>";
+                echo("<table class='table table' style='color:black; width:100%; margin:0 auto; '>
+                <thead>
+                <tr>
+                    <th scope='col'>ID USUARIO</th>
+                    <th scope='col'>ID POST</th>
+                    <th scope='col'>USUARIO</th>
+                    <th scope='col'>TEMA</th>
+                    <th scope='col'>FECHA</th>
+                    <th scope='col'>ELIMINAR</th>
+                </tr>
+                </thead>
+                <tbody>");
+            while($row = $resultado->fetch()){
+            echo("
+                <tr>
+                    <td>".$row["id"]."</td>
+                    <td>".$row["id_post"]."</td>
+                    <td>".$row["usuario"]."</td>
+                    <td>".$row["tema"]."</td>
+                    <td>".$row["fecha"]."</td>
+                    <td>
+                    <a class='btn btn-danger' href='panel.php?id=".$row['id_post']."' onclick =' return DeleteConfirm()'><ion-icon name='trash-outline' style='font-size:17px;'</ion-icon></a>
+                    </td>
+                </tr>");
+        
+           
+        }
         echo("
-            <tr>
-                <td>".$row["id"]."</td>
-                <td>".$row["id_post"]."</td>
-                <td>".$row["usuario"]."</td>
-                <td>".$row["tema"]."</td>
-                <td>".$row["fecha"]."</td>
-                <td>
-                <a class='btn btn-danger' href='panel.php?id=".$row['id_post']."' onclick =' return DeleteConfirm()'><ion-icon name='trash-outline' style='font-size:17px;'</ion-icon></a>
-                </td>
-            </tr>");
+            </tbody>
+            </table>"); 
+            if(isset($_GET['id'])){
+              $ids = $_GET['id'];
+              echo "<div class='popup'>
+              <form method='post' action='' style='position:fixed;'>
+                <p>¿Desea eliminar este post?</p>
+                <div class='text-right'>
+                  <button type='submit' class='btn btn-primary' name='alerta1'>Ok</button>
+                  <button type='submit' class='btn btn-secondary' name='alerta2'>Cancel</button>
+                </div>
+              </form>
+              </div>";
+              if(isset($_POST['alerta1'])){
+                $sql = "call eliminar_post(".$ids.")";
+                $registros = $pdo->exec($sql);
+                header("Location: ../private/panel.php");
+              }
+              if(isset($_POST['alerta2'])){
+                header("Location: ../private/panel.php");
+              }
+            }
+          }
+        }
+        
+         
+          
+  
+  
+  ?>
     
-       
-    }
-    echo("
-        </tbody>
-        </table>"); 
-        ?>
-    <?php
-if(isset($_GET['id'])){
-    $ids = $_GET['id'];
-    echo "<div class='popup'>
-    <form method='post' action='' style='position:fixed;'>
-      <p>¿Desea eliminar este post?</p>
-      <div class='text-right'>
-        <button type='submit' class='btn btn-primary' name='alerta1'>Ok</button>
-        <button type='submit' class='btn btn-secondary' name='alerta2'>Cancel</button>
-      </div>
-    </form>
-    </div>";
-    if(isset($_POST['alerta1'])){
-      $sql = "call eliminar_post(".$ids.")";
-      $registros = $pdo->exec($sql);
-      header("Location: panel.php");
-    }
-    if(isset($_POST['alerta2'])){
-      header("Location: panel.php");
-    }
-  }
-
-?>
     </div>
     <footer style="background-color:#f7f7f7; color:black;">
       <p>&copy; 2023 LogicInCode</p>
