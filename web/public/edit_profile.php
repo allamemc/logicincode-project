@@ -21,7 +21,7 @@
     </nav>
     
     <form class="formulario a" action="" method="post" enctype="multipart/form-data">
-          <h1>Nuevo Post</h1><br>
+          <h1>Editar Perfil</h1><br>
           <input type="text" name="usuario" value="<?php echo $_GET['usuario'] ?>" maxlength="50" required><br>
           <input type="text" name="descricion" style="height: 100px;" value="<?php echo $_GET['desc'] ?>"  cols="30" rows="10" maxlength="50"  required></input><br>
           <input type="file" name="imagen" value="../img/150-1503945_transparent-user-png-default-user-image-png-png.png" required><br>
