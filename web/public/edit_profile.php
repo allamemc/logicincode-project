@@ -30,6 +30,7 @@
     <?php
     require_once('../config/db.php');
     session_start();
+    try{
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             if(isset($_POST['enviar'])){
                 $buscar = "SELECT * FROM usuarios where usuario = '".$_POST['usuario']."'";
@@ -39,8 +40,8 @@
                   echo "<div class='alert alert-danger' role='alert' style='width:400px; margin:0 auto; margin-top:20px;'>
                         Este Usuario ya existe.
                     </div>";
-                
-            }else{
+                  }     
+              else{
                 if (isset($_FILES['imagen'])) {
                     $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
                     $allowed_extensions = array('jpg', 'jpeg', 'png');
@@ -50,7 +51,7 @@
                         La extensión no esta permitida
                     </div>";
                     } else {
-                        
+                      try{
                         $stmt = $pdo->prepare("call actualizar_perfil(?,?,?,?)");
                         $stmtu = $pdo->prepare("call actualizar_perfil2('".$_POST['usuario']."',".$_SESSION['token'].")");
                         
@@ -64,12 +65,24 @@
                         echo "<div class='alert alert-success' role='alert' style='width:400px; margin:0 auto; margin-top:20px;'>
                         Se ha actualizado su perfil correctamente.
                     </div>";
+    
+                      }catch(Exception $e){
+                        echo "<div class='alert alert-danger' role='alert' style='width:400px; margin:0 auto; margin-top:20px;'>
+                        Uno de los campos tiene caracteres prohibidos.
+                        </div>";
+                      }
+                        
                     }
                 }
             }
                 }
-                
-        }
+                }
+              }catch(Exception $e){
+                echo "<div class='alert alert-danger' role='alert' style='width:400px; margin:0 auto; margin-top:20px;'>
+                Uno de los campos tiene caracteres prohibidos.
+                </div>";
+              }
+        
     ?>
 
 

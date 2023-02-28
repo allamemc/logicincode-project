@@ -28,6 +28,8 @@
     </form>
     <?php
     require_once("../config/db.php");
+    try{
+    
     if(isset($_POST['enviar'])){
       $email = strtolower($_POST['email']);
         $ac = "SELECT * FROM comprobar()";
@@ -57,6 +59,11 @@
         }
         
     }
+  }catch(Exception $e){
+    echo "<div class='alert alert-danger' role='alert' style='width:400px; margin:0 auto; margin-top:20px;'>
+    Uno de los campos tiene caracteres prohibidos.
+    </div>";
+  }
     ?>
 
 

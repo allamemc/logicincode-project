@@ -40,7 +40,8 @@
                     </div>";
                     } else {
                         session_start();
-                        $consulta = "SELECT * FROM usuarios WHERE id = {$_SESSION['token']}";
+                        try{
+                          $consulta = "SELECT * FROM usuarios WHERE id = {$_SESSION['token']}";
                         $usuarioactual = $pdo->query($consulta);
                         $row = $usuarioactual->fetch();
                         $stmt = $pdo->prepare("INSERT INTO posts (id,usuario,tema,descripcion,imagen) VALUES (?,?,'".$_POST['tema']."','".$_POST['descricion']."',?)");
@@ -52,7 +53,14 @@
                         $stmt->execute();
                         echo "<div class='alert alert-success' role='alert' style='width:400px; margin:0 auto; margin-top:20px;'>
                         Se ha subido su post correctamente.
-                    </div>";
+                        </div>";
+      
+                        }catch(Exception $e){
+                          echo "<div class='alert alert-danger' role='alert' style='width:400px; margin:0 auto; margin-top:20px;'>
+                          Uno de los campos tiene caracteres prohibidos.
+                          </div>";
+                        }
+                        
                     }
                 }
             }

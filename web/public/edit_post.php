@@ -40,15 +40,23 @@
                         </div>";
                     } else {
                         session_start();
-                        $consulta = "SELECT * FROM usuarios WHERE id = {$_SESSION['token']}";
-                        $usuarioactual = $pdo->query($consulta);
-                        $row = $usuarioactual->fetch();
-                        $stmt = $pdo->prepare("call actualizar_post(".$_GET['id_post'].",'".$_POST['tema']."','".$_POST['descricion']."',?)");
-                        $stmt->bindParam(1, $imagen, PDO::PARAM_LOB);
-                        $stmt->execute();
-                        echo "<div class='alert alert-success' role='alert' style='width:400px; margin:0 auto; margin-top:20px;'>
-                        Se ha actualizado su post correctamente.
-                    </div>";
+                        try{
+                          $consulta = "SELECT * FROM usuarios WHERE id = {$_SESSION['token']}";
+                          $usuarioactual = $pdo->query($consulta);
+                          $row = $usuarioactual->fetch();
+                          $stmt = $pdo->prepare("call actualizar_post(".$_GET['id_post'].",'".$_POST['tema']."','".$_POST['descricion']."',?)");
+                          $stmt->bindParam(1, $imagen, PDO::PARAM_LOB);
+                          $stmt->execute();
+                          echo "<div class='alert alert-success' role='alert' style='width:400px; margin:0 auto; margin-top:20px;'>
+                          Se ha actualizado su post correctamente.
+                          </div>";
+      
+                        }catch(Exception $e){
+                          echo "<div class='alert alert-danger' role='alert' style='width:400px; margin:0 auto; margin-top:20px;'>
+                          Uno de los campos tiene caracteres prohibidos.
+                          </div>";
+                        }
+                        
                     }
                 }
             }

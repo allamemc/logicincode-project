@@ -39,7 +39,6 @@
           </div>";
         }
         ?>
-      
     </nav>
     <div class="posts">
       
