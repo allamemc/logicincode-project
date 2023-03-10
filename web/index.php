@@ -41,7 +41,7 @@
         
 
         
-        <h2>Lenguajess orientados a objetos</h2>
+        <h2>Lenguajes orientados a objetos</h2>
         <p>Los lenguajes orientados a objetos se basan en la idea de que todo en el mundo es un objeto que puede tener propiedades y métodos que se pueden utilizar para interactuar con él. La programación orientada a objetos se centra en el diseño de clases, que son plantillas para objetos, y en la definición de relaciones entre ellas para resolver problemas. Ejemplos de lenguajes orientados a objetos incluyen:</p>
         <ul>
           <li>Java: Java es un lenguaje de programación que se utiliza comúnmente para desarrollar aplicaciones de escritorio y web. Java se centra en la seguridad y la portabilidad, y se ejecuta en una máquina virtual para asegurar la compatibilidad en diferentes plataformas.</li>
