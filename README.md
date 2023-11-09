@@ -1,6 +1,6 @@
-# Hito Individual Programación 2T
+# Proyecto Login In Code
 
-Para este hito se han requerido de los archivos aqui subidos en caso del sql es un dump de la base de datos para que se pueda insertar facilmente en su ordenador, en este 
+Para este proyecto se han requerido de los archivos aqui subidos en caso del sql es un dump de la base de datos para que se pueda insertar facilmente en su ordenador, en este 
 caso para realizar esto vamos a insertar estas lineas en nuestra consola cmd para PostGre SQL:
 
 Primero creamos una base de datos vacia
@@ -11,11 +11,11 @@ Ahora vamos a insertar el dump en nuestra base de datos nueva
 
 ### Para iniciar como admin, email: admin@admin.com | pass: admin1234
 
-## Imágenes del Hito
+## Imágenes del Proyecto
 
 ![image](https://user-images.githubusercontent.com/117905622/225563880-a29ce643-9f55-407d-b4a9-a44556f2434d.png)
 ![image](https://user-images.githubusercontent.com/117905622/225563913-c24961eb-f250-433c-bfa8-b179787690d8.png)
 ![image](https://user-images.githubusercontent.com/117905622/225564016-aaea491e-c4e7-4be0-a324-0aa94dbcdc46.png)
 
-## Con esto ya podemos visualizar correctamente el Hito, Muchas Gracias.
+## Con esto ya podemos visualizar correctamente el proyecto, Muchas Gracias.
 
